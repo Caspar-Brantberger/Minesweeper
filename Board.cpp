@@ -94,7 +94,7 @@ void Board::calculateNeighborCounts(){
 
                 }
             } 
-            m_grid[r][c].setNeighborsMines(mineCount);
+            m_grid[r][c].neighborMines(mineCount);
         }
     }
 }
