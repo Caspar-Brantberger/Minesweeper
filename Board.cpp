@@ -132,3 +132,15 @@ bool Board::revealCell(int r,int c){
     return false;
 
 }
+bool Board:: checkWinConditions()const{
+    for(int r = 0; r < m_height; ++r){
+        for(int c = 0; c < m_width; ++c) {
+        const Cell& currentCell = m_grid[r][c];
+        
+        if(!currentCell.hasMine() && !currentCell.isRevealed()){
+            return false;
+        }
+        return true;
+        }
+    }
+}

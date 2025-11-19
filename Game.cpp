@@ -68,3 +68,11 @@ void Game::processMove(int row, int col, char command){
         checkGameStatus();
     }
 }
+void Game:: checkGameStatus(){
+    if (m_isGameOver) return;
+
+    if(m_gameBoard -> checkWinConditions()){
+        m_isGameWon = true;
+    }
+
+}
