@@ -23,7 +23,7 @@ private:
     bool revealCell(int x,int y);
     void toggleFlag(int x,int y);
 
-    bool checkWinConditions() const;
+    bool checkWinCondition() const;
 
     int getWidth() const {return m_width;}
     int getHeight() const {return m_height;}

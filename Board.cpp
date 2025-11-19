@@ -4,6 +4,16 @@
 #include <algorithm>
 #include <iostream>
 
+Board::Board(int width, int height, int mines)
+    : m_width(width), m_height(height), m_totalMines(mines)
+{
+    m_grid.resize(m_height);
+
+    for (int r = 0; r < m_height; ++r) {
+        m_grid[r].resize(m_width);
+    }
+}
+
 void Board::placeMines() {
     std::random_device rd;
     std::mt19937 generator(rd()); 
@@ -132,7 +142,7 @@ bool Board::revealCell(int r,int c){
     return false;
 
 }
-bool Board:: checkWinConditions()const{
+bool Board:: checkWinCondition()const{
     for(int r = 0; r < m_height; ++r){
         for(int c = 0; c < m_width; ++c) {
         const Cell& currentCell = m_grid[r][c];
