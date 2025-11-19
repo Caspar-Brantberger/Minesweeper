@@ -18,4 +18,8 @@ private:
     void displayBoard() const;
 
     void revealCell(int x,int y);
+
+    int getWidth() const {return m_width;}
+    int getHeight() const {return m_height;}
+
 };
