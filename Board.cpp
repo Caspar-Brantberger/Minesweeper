@@ -98,3 +98,37 @@ void Board::calculateNeighborCounts(){
         }
     }
 }
+void Board::toggleFlag(int row, int col) {
+    m_grid[row][col].toggleFlag(); 
+}
+bool Board::revealCell(int r,int c){
+    if (r < 0|| r >= m_height || c < 0 || c >= m_width) {
+        return false;
+    }
+    Cell& currentCell = m_grid[r][c];
+
+    if(currentCell.isRevealed() || currentCell.isFlagged()){
+        return false;
+    }
+    currentCell.reveal();
+
+    if (currentCell.hasMine()) {
+        return true; 
+    }
+
+    if (currentCell.neighborMines() > 0) {
+        return false; 
+    }
+
+
+    for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {
+            if (i == 0 && j == 0) continue; 
+
+            revealCell(r + i, c + j);
+        }
+    }
+    
+    return false;
+
+}
