@@ -139,8 +139,8 @@ bool Board:: checkWinConditions()const{
         
         if(!currentCell.hasMine() && !currentCell.isRevealed()){
             return false;
+                }
+            }
         }
-        return true;
-        }
-    }
+    return true;
 }

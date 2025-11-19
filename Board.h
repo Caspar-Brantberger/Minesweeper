@@ -1,6 +1,9 @@
 #include <vector>
 #include "Cell.h"
 
+#ifndef BOARD_H
+#define BOARD_H
+
 class Board {
 private:
     std::vector<std::vector<Cell>> m_grid;
@@ -26,3 +29,4 @@ private:
     int getHeight() const {return m_height;}
 
 };
+#endif // BOARD_H
