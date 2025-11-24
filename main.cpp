@@ -7,11 +7,11 @@ int main(){
     const int TOTAL_MINES = 5;
 
     std::cout << "Välkommen till Minröj! \n";
-    std::cout << "Spelet startar med" + BOARD_WIDTH << "x" 
+    std::cout << "Spelet startar med" << BOARD_WIDTH << "x" 
     << BOARD_HEIGHT << "rutor och" << TOTAL_MINES <<" minor.\n";
 
     try{
-    Game minesweeper(BOARD_HEIGHT,BOARD_WIDTH,TOTAL_MINES);
+    Game minesweeper(BOARD_WIDTH,BOARD_HEIGHT,TOTAL_MINES);
 
     minesweeper.run();
     }catch(const std::exception & e){

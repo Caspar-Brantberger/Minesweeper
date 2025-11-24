@@ -17,7 +17,7 @@ private:
 
     void setMine(){m_hasMine = true;}
 
-    void neighborMines(int count){m_neighborMines = count;}
+    void setNeighborMines(int count){m_neighborMines = count;}
     void reveal(){m_isRevealed = true;}
     void toggleFlag(){m_isFlagged = !m_isFlagged;}
 

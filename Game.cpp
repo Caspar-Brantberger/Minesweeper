@@ -51,19 +51,17 @@ bool Game::parseAndValidateInput(const std::string& input, int& row, int& col, c
     std::string cleanInput = input;
     command = 'r';
 
-    if(cleanInput.length() >= 2 &&(cleanInput[0]== 'f'|| cleanInput[0] == 'F')){
+    if (input.length() >= 3 && (input[0] == 'f' || input[0] == 'F') && input[1] == ' ') {
         command = 'f';
 
-        if(cleanInput.length() >= 3 && cleanInput[1] == ' '){
-            cleanInput = cleanInput.substr(2);
-        } else {
-            cleanInput = cleanInput.substr(1);
-        }
+        cleanInput = input.substr(2); 
     }
-    if(cleanInput.length()< 2|| !std::isalpha(cleanInput[0]) || !std::isdigit(cleanInput[1])){
+
+    if(cleanInput.length() < 2 || !std::isalpha(cleanInput[0]) || !std::isdigit(cleanInput[1])){
         std::cout << "Ogiltigt format. Använd t.ex. 'a1' eller 'f b2'.\n";
         return false;
     }
+
     std::string colString = cleanInput.substr(1);
     for(char c: colString){
         if(!std::isdigit(c)){
@@ -71,19 +69,19 @@ bool Game::parseAndValidateInput(const std::string& input, int& row, int& col, c
             return false;
         }
     }
+
     char rowChar = std::tolower(cleanInput[0]);
-    row = rowChar - 'a';
+    row = rowChar - 'a'; 
 
     std::stringstream ss(cleanInput.substr(1));
-    int col1Indexed;
+    int col1Indexed; 
     if(!(ss >> col1Indexed)){
         std::cout << "Kunde inte tolka kolumnnummer.\n";
         return false;
     }
     col = col1Indexed - 1; 
-    
     int boardHeight = m_gameBoard->getHeight();
-    int boardWidth = m_gameBoard->getWidth();   
+    int boardWidth = m_gameBoard->getWidth();    
 
     if (row < 0 || row >= boardHeight || col < 0 || col >= boardWidth) {
         std::cout << "Koordinaterna (" << rowChar << col1Indexed << ") ligger utanför spelplanen.\n";
@@ -91,7 +89,6 @@ bool Game::parseAndValidateInput(const std::string& input, int& row, int& col, c
     }
 
     return true;
-
 }
 void Game::processMove(int row, int col, char command){
     if(!m_gameBoard){
@@ -100,6 +97,7 @@ void Game::processMove(int row, int col, char command){
     }
     if(command == 'f'){
         std::cout << "Ruta " << (char)('a' + row) << col + 1 << " flaggades/avflaggades.\n";
+        m_gameBoard->toggleFlag(row,col);
     } else if(command == 'r'){
         bool hitMine = m_gameBoard->revealCell(row,col);
 

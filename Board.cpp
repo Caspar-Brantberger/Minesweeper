@@ -62,6 +62,8 @@ void Board::displayBoard() const {
                     cellContent = '*'; 
                 } else if (currentCell.neighborMines() > 0) {
                     cellContent = (char)('0' + currentCell.neighborMines());
+                } else {
+                    cellContent = '0';
                 }
             }
             
@@ -104,7 +106,7 @@ void Board::calculateNeighborCounts(){
 
                 }
             } 
-            m_grid[r][c].neighborMines(mineCount);
+            m_grid[r][c].setNeighborMines(mineCount);
         }
     }
 }
